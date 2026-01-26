@@ -36,7 +36,3 @@ func spawn_target():
 		target.position = target_spawn_location
 		
 		add_child(target)
-	elif target_active == true:
-		return
-	else:
-		return
