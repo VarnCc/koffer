@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dnkrjlrkx10b2"]
 
+[ext_resource type="Script" uid="uid://bx5ejojx0dn3e" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://ba0u38o8r21lr" path="res://Assets/Sprites/World/Ground_test_32.png" id="1_ig7tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
@@ -12,6 +13,7 @@ size = Vector2(65, 4)
 size = Vector2(95, 32)
 
 [node name="Node2D" type="Node2D" unique_id=730535917]
+script = ExtResource("1_0xm2m")
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1827294272]
 position = Vector2(39, 203)
@@ -91,3 +93,5 @@ texture = ExtResource("1_ig7tw")
 [node name="Ground32p13" type="Sprite2D" parent="Ground/GroundTiles" unique_id=718662963]
 position = Vector2(80, 256)
 texture = ExtResource("1_ig7tw")
+
+[node name="GameTimer" type="Timer" parent="." unique_id=889713443]
