@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bx5ejojx0dn3e" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://ba0u38o8r21lr" path="res://Assets/Sprites/World/Ground_test_32.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dsaa1gtjrjmlk" path="res://target.tscn" id="2_h2yge"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(320, 31)
@@ -14,12 +15,13 @@ size = Vector2(95, 32)
 
 [node name="Node2D" type="Node2D" unique_id=730535917]
 script = ExtResource("1_0xm2m")
+target_scene = ExtResource("2_h2yge")
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1827294272]
 position = Vector2(39, 203)
 
 [node name="TargetSpawnTopLeft" type="Marker2D" parent="." unique_id=600510600]
-position = Vector2(160, 177)
+position = Vector2(160, 107)
 
 [node name="TargetSpawnBotRight" type="Marker2D" parent="." unique_id=862856630]
 position = Vector2(480, 240)

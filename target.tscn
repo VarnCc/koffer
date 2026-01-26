@@ -1,3 +1,16 @@
 [gd_scene format=3 uid="uid://dsaa1gtjrjmlk"]
 
-[node name="Area2D" type="Area2D" unique_id=672874080]
+[ext_resource type="Texture2D" uid="uid://1hn2e3quq4xp" path="res://Assets/Sprites/Targets/Target_test_32.png" id="1_t2jmu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e1yvt"]
+radius = 15.0
+
+[node name="Target" type="Area2D" unique_id=672874080]
+collision_layer = 16
+collision_mask = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1502315999]
+texture = ExtResource("1_t2jmu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1020421106]
+shape = SubResource("CircleShape2D_e1yvt")
