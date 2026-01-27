@@ -20,7 +20,7 @@ target_scene = ExtResource("2_h2yge")
 projectile_scene = ExtResource("3_1bvp3")
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1827294272]
-position = Vector2(39, 203)
+position = Vector2(49, 221)
 
 [node name="TargetSpawnTopLeft" type="Marker2D" parent="." unique_id=600510600]
 position = Vector2(160, 107)
@@ -28,19 +28,19 @@ position = Vector2(160, 107)
 [node name="TargetSpawnBotRight" type="Marker2D" parent="." unique_id=862856630]
 position = Vector2(480, 240)
 
-[node name="Ground" type="Node2D" parent="." unique_id=1711832829]
+[node name="Ground" type="Node2D" parent="." unique_id=1711832829 groups=["GroundBody"]]
 
-[node name="GroundBody" type="StaticBody2D" parent="Ground" unique_id=198662160]
+[node name="GroundBody" type="StaticBody2D" parent="Ground" unique_id=198662160 groups=["GroundBody"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/GroundBody" unique_id=395498733]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/GroundBody" unique_id=395498733 groups=["GroundBody"]]
 position = Vector2(320, 255.5)
 shape = SubResource("RectangleShape2D_0xm2m")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground/GroundBody" unique_id=1797921991]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground/GroundBody" unique_id=1797921991 groups=["GroundBody"]]
 position = Vector2(128.5, 270)
 shape = SubResource("RectangleShape2D_h2yge")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground/GroundBody" unique_id=232532021]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground/GroundBody" unique_id=232532021 groups=["GroundBody"]]
 position = Vector2(48.5, 256)
 shape = SubResource("RectangleShape2D_1bvp3")
 
