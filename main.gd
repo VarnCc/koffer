@@ -4,15 +4,16 @@ extends Node2D
 
 var score = 0
 var combo = 1
-var target_points = 10.0
+const target_points = 10.0
 var game_state = true
 var shot_active = false
 var target_active = false
+var current_target: Node = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_target()
-	spawn_projectile()
+	projectile()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -37,10 +38,40 @@ func spawn_target():
 		var target_spawn_location = Vector2(random_x, random_y)
 		target.position = target_spawn_location
 		
+		current_target = target
 		add_child(target)
 
-func spawn_projectile():
+func projectile():
 	var projectile = projectile_scene.instantiate()
 	add_child(projectile)
 	projectile.global_position = $PlayerSpawn.global_position
 	projectile.linear_velocity = Vector2(400, -50)
+	
+	projectile.hit.connect(_on_projectile_hit)
+	projectile.miss.connect(_on_projectile_miss)
+	projectile.out_of_view.connect(_on_projectile_out_of_view)
+
+func _on_projectile_hit():
+	print("hit")
+	score += target_points * combo
+	combo += 0.1
+	
+	current_target.queue_free()
+	current_target = null
+	target_active = false
+	spawn_target()
+	
+	shot_active = false
+	
+func _on_projectile_miss():
+	print("miss")
+	combo = 1.0
+	
+	shot_active = false
+	
+func _on_projectile_out_of_view():
+	print("miss")
+	combo = 1.0
+	
+	shot_active = false
+	
