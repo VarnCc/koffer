@@ -1,5 +1,6 @@
 extends Node2D
 @export var target_scene: PackedScene
+@export var projectile_scene: PackedScene
 
 var score = 0
 var combo = 1
@@ -11,6 +12,7 @@ var target_active = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_target()
+	spawn_projectile()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -36,3 +38,9 @@ func spawn_target():
 		target.position = target_spawn_location
 		
 		add_child(target)
+
+func spawn_projectile():
+	var projectile = projectile_scene.instantiate()
+	add_child(projectile)
+	projectile.global_position = $PlayerSpawn.global_position
+	projectile.linear_velocity = Vector2(400, -50)

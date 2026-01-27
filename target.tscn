@@ -6,8 +6,6 @@
 radius = 15.0
 
 [node name="Target" type="Area2D" unique_id=672874080]
-collision_layer = 16
-collision_mask = 16
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1502315999]
 texture = ExtResource("1_t2jmu")
