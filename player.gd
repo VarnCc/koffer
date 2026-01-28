@@ -1,16 +1,19 @@
 extends Node2D
 
+signal shot_request(locked_direction, powering_value)
+
 var aim_value = 0.0
 var aim_direction = 1.0
-var aim_speed = 1.5
+var aim_speed = 1.0/2.0
 var aim_locked := false
 var aim_locked_value = 0.0
 
 var power_value = 0.0
 var power_speed = 1.0/3.0
 var power_direction = 1.0
-var set_powering = false
 var powering_value = 0.0
+
+var locked_direction: Vector2 = Vector2.ZERO
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,12 +23,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-		if Input.is_action_just_pressed("shoot"):
+		if Input.is_action_just_pressed("shoot") and not aim_locked:
 			aim_locked = true
 			aim_locked_value = aim_value
+			
+			power_value = 0.0
+			power_direction = 1.0
 			print ("Lock: ", aim_locked_value)
-			var dir = angle_calculat()
-			print("direction: ", dir)
+			var direction = angle_calculat()
+			locked_direction = direction
 		
 		if not aim_locked:
 			aim_value += aim_direction * aim_speed * delta
@@ -46,8 +52,11 @@ func _process(delta: float) -> void:
 				
 			print ("Power: ", power_value)
 			
-		if Input.is_action_just_released("shoot"):
+		if Input.is_action_just_released("shoot") and aim_locked:
 			powering_value = power_value
+			emit_signal("shot_request", locked_direction, powering_value)
+			aim_locked = false
+			power_value = 0.0
 			print("Power locked: ", powering_value)
 
 func angle_calculat():
