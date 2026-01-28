@@ -13,11 +13,11 @@ var current_target: Node = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_target()
-	projectile()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("shoot"):
+		test_shoot()
 
 func spawn_target():
 	var padding = 18.0
@@ -45,7 +45,7 @@ func projectile():
 	var projectile = projectile_scene.instantiate()
 	add_child(projectile)
 	projectile.global_position = $PlayerSpawn.global_position
-	projectile.linear_velocity = Vector2(400, -50)
+	projectile.linear_velocity = Vector2(400, -500)
 	
 	projectile.hit.connect(_on_projectile_hit)
 	projectile.miss.connect(_on_projectile_miss)
@@ -75,3 +75,7 @@ func _on_projectile_out_of_view():
 	
 	shot_active = false
 	
+func test_shoot():
+	if shot_active == false:
+		projectile()
+		shot_active = true
