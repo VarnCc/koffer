@@ -24,6 +24,8 @@ func _process(delta: float) -> void:
 			aim_locked = true
 			aim_locked_value = aim_value
 			print ("Lock: ", aim_locked_value)
+			var dir = angle_calculat()
+			print("direction: ", dir)
 		
 		if not aim_locked:
 			aim_value += aim_direction * aim_speed * delta
@@ -47,3 +49,10 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_released("shoot"):
 			powering_value = power_value
 			print("Power locked: ", powering_value)
+
+func angle_calculat():
+	var angle = 80 - (aim_locked_value * (80 -10))
+	angle = deg_to_rad(angle)
+	
+	var direction = Vector2(cos(angle), sin(angle))
+	return direction
