@@ -19,6 +19,7 @@ size = Vector2(95, 32)
 script = ExtResource("1_0xm2m")
 target_scene = ExtResource("2_h2yge")
 projectile_scene = ExtResource("3_1bvp3")
+player_scene = ExtResource("5_lquwl")
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1827294272]
 position = Vector2(49, 221)

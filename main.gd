@@ -1,6 +1,7 @@
 extends Node2D
 @export var target_scene: PackedScene
 @export var projectile_scene: PackedScene
+@export var player_scene: PackedScene
 
 var score = 0
 var combo = 1.0
@@ -10,8 +11,10 @@ var shot_active = false
 var target_active = false
 var current_target: Node = null
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	spawn_player()
 	$Player.shot_request.connect(_on_player_shot_request)
 	spawn_target()
 
@@ -83,3 +86,8 @@ func _on_player_shot_request(direction: Vector2, power: float):
 		return
 	projectile(direction, power)
 	shot_active = true
+
+func spawn_player():
+	var player = player_scene.instantiate()
+	add_child(player)
+	player.global_position = $PlayerSpawn.global_position

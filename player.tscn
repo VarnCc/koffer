@@ -12,7 +12,6 @@ shader_parameter/power = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i3pqv"]
 
 [node name="Player" type="Node2D" unique_id=343612898]
-position = Vector2(41, 236)
 script = ExtResource("1_4flbx")
 
 [node name="AimLine" type="Line2D" parent="." unique_id=801194067]
