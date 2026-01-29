@@ -9,7 +9,7 @@ var aim_locked := false
 var aim_locked_value = 0.0
 
 var power_value = 0.0
-var power_speed = 1.0/3.0
+var power_speed = 1.0/2.5
 var power_direction = 1.0
 var powering_value = 0.0
 
@@ -58,9 +58,21 @@ func _process(delta: float) -> void:
 			aim_locked = false
 			power_value = 0.0
 			print("Power locked: ", powering_value)
+			
+		#---Aim Lock
+		var show_direction: Vector2
+		if not aim_locked:
+			var angle = 85 - (aim_value * (85 -5))
+			angle = deg_to_rad(angle)
+			show_direction = Vector2(cos(angle), -sin(angle))
+		else:
+			show_direction = locked_direction
+		$AimLine.points =[Vector2.ZERO, show_direction.normalized() * 80]
+		
+		$PowerBarBG/PowerBar.size.x = 60 * power_value
 
 func angle_calculat():
-	var angle = 80 - (aim_locked_value * (80 -10))
+	var angle = 85 - (aim_locked_value * (85 -5))
 	angle = deg_to_rad(angle)
 	
 	var direction = Vector2(cos(angle), -sin(angle))

@@ -3,4 +3,22 @@
 [ext_resource type="Script" uid="uid://b6lajc02pfjcr" path="res://player.gd" id="1_4flbx"]
 
 [node name="Player" type="Node2D" unique_id=343612898]
+position = Vector2(41, 236)
 script = ExtResource("1_4flbx")
+
+[node name="AimLine" type="Line2D" parent="." unique_id=801194067]
+points = PackedVector2Array(123, 163)
+width = 3.0
+default_color = Color(0.64405835, 0, 0.060129456, 1)
+
+[node name="PowerBarBG" type="ColorRect" parent="." unique_id=114138883]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 75.0
+offset_bottom = 21.0
+color = Color(0, 0, 0, 1)
+
+[node name="PowerBar" type="ColorRect" parent="PowerBarBG" unique_id=358270416]
+layout_mode = 0
+offset_bottom = 6.0
+color = Color(0, 0.5943392, 0.03180576, 1)

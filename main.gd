@@ -46,7 +46,7 @@ func projectile(direction, power):
 	add_child(projectile)
 	projectile.global_position = $PlayerSpawn.global_position
 	
-	var base_speed = 500
+	var base_speed = 800.0
 	base_speed = base_speed * power
 	projectile.linear_velocity = direction * base_speed
 	
