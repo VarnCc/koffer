@@ -63,5 +63,5 @@ func angle_calculat():
 	var angle = 80 - (aim_locked_value * (80 -10))
 	angle = deg_to_rad(angle)
 	
-	var direction = Vector2(cos(angle), sin(angle))
+	var direction = Vector2(cos(angle), -sin(angle))
 	return direction

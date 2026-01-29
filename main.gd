@@ -3,7 +3,7 @@ extends Node2D
 @export var projectile_scene: PackedScene
 
 var score = 0
-var combo = 1
+var combo = 1.0
 const target_points = 10.0
 var game_state = true
 var shot_active = false
@@ -12,12 +12,12 @@ var current_target: Node = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Player.shot_request.connect(_on_player_shot_request)
 	spawn_target()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		test_shoot()
+	pass
 
 func spawn_target():
 	var padding = 18.0
@@ -41,11 +41,14 @@ func spawn_target():
 		current_target = target
 		add_child(target)
 
-func projectile():
+func projectile(direction, power):
 	var projectile = projectile_scene.instantiate()
 	add_child(projectile)
 	projectile.global_position = $PlayerSpawn.global_position
-	projectile.linear_velocity = Vector2(400, -500)
+	
+	var base_speed = 500
+	base_speed = base_speed * power
+	projectile.linear_velocity = direction * base_speed
 	
 	projectile.hit.connect(_on_projectile_hit)
 	projectile.miss.connect(_on_projectile_miss)
@@ -74,8 +77,9 @@ func _on_projectile_out_of_view():
 	combo = 1.0
 	
 	shot_active = false
-	
-func test_shoot():
-	if shot_active == false:
-		projectile()
-		shot_active = true
+
+func _on_player_shot_request(direction: Vector2, power: float):
+	if shot_active:
+		return
+	projectile(direction, power)
+	shot_active = true

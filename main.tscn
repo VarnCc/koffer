@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ba0u38o8r21lr" path="res://Assets/Sprites/World/Ground_test_32.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dsaa1gtjrjmlk" path="res://target.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dgobe73fxv4au" path="res://projectile.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dnw3s77wmc1f0" path="res://player.tscn" id="5_lquwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(320, 31)
@@ -99,3 +100,5 @@ position = Vector2(80, 256)
 texture = ExtResource("1_ig7tw")
 
 [node name="GameTimer" type="Timer" parent="." unique_id=889713443]
+
+[node name="Player" parent="." unique_id=343612898 instance=ExtResource("5_lquwl")]
