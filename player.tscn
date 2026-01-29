@@ -1,6 +1,15 @@
 [gd_scene format=3 uid="uid://dnw3s77wmc1f0"]
 
 [ext_resource type="Script" uid="uid://b6lajc02pfjcr" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Shader" uid="uid://jaxnkghh0d7v" path="res://player.gdshader" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://b4ox3u16f1iki" path="res://Assets/Sprites/Player/Aim_Arrow_Mask_64x16.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://rqpcxwsixjsx" path="res://Assets/Sprites/Player/Aim_Arrow_64x16.png" id="2_onrkg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sweqy"]
+shader = ExtResource("2_hqtel")
+shader_parameter/power = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i3pqv"]
 
 [node name="Player" type="Node2D" unique_id=343612898]
 position = Vector2(41, 236)
@@ -11,14 +20,17 @@ points = PackedVector2Array(123, 163)
 width = 3.0
 default_color = Color(0.64405835, 0, 0.060129456, 1)
 
-[node name="PowerBarBG" type="ColorRect" parent="." unique_id=114138883]
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 75.0
-offset_bottom = 21.0
-color = Color(0, 0, 0, 1)
+[node name="AimArrow" type="Node2D" parent="." unique_id=2059573094]
 
-[node name="PowerBar" type="ColorRect" parent="PowerBarBG" unique_id=358270416]
-layout_mode = 0
-offset_bottom = 6.0
-color = Color(0, 0.5943392, 0.03180576, 1)
+[node name="FillArrowMask" type="Sprite2D" parent="AimArrow" unique_id=1771500730]
+material = SubResource("ShaderMaterial_sweqy")
+position = Vector2(33, 0)
+scale = Vector2(1, 0.5)
+texture = ExtResource("2_i3pqv")
+
+[node name="AimArrowSprite" type="Sprite2D" parent="AimArrow" unique_id=1055737319]
+texture_filter = 1
+material = SubResource("ShaderMaterial_i3pqv")
+position = Vector2(33, 0)
+scale = Vector2(1, 0.5)
+texture = ExtResource("2_onrkg")

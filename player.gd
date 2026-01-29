@@ -1,20 +1,21 @@
 extends Node2D
 
+@onready var fill_mat: ShaderMaterial = $AimArrow/FillArrowMask.material as ShaderMaterial
+
 signal shot_request(locked_direction, powering_value)
 
 var aim_value = 0.0
 var aim_direction = 1.0
-var aim_speed = 1.0/2.0
+var aim_speed = 0.75
 var aim_locked := false
 var aim_locked_value = 0.0
 
 var power_value = 0.0
-var power_speed = 1.0/2.5
+var power_speed = 1.0
 var power_direction = 1.0
 var powering_value = 0.0
 
 var locked_direction: Vector2 = Vector2.ZERO
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -49,8 +50,6 @@ func _process(delta: float) -> void:
 			elif power_value >= 1.0:
 				power_value = 1.0
 				power_direction = -1.0
-				
-			print ("Power: ", power_value)
 			
 		if Input.is_action_just_released("shoot") and aim_locked:
 			powering_value = power_value
@@ -67,9 +66,10 @@ func _process(delta: float) -> void:
 			show_direction = Vector2(cos(angle), -sin(angle))
 		else:
 			show_direction = locked_direction
-		$AimLine.points =[Vector2.ZERO, show_direction.normalized() * 80]
+		$AimArrow.rotation = show_direction.angle()
 		
-		$PowerBarBG/PowerBar.size.x = 60 * power_value
+		#$PowerBarBG/PowerBar.size.x = 60 * power_value
+		fill_mat.set_shader_parameter("power", power_value if aim_locked else 0.0)
 
 func angle_calculat():
 	var angle = 85 - (aim_locked_value * (85 -5))
