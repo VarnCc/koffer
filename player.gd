@@ -85,3 +85,7 @@ func angle_calculat():
 	
 	var direction = Vector2(cos(angle), -sin(angle))
 	return direction
+
+func set_input_enabled(enabled: bool):
+	can_charge = enabled
+	$AimArrow.visible = enabled
