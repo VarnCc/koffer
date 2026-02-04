@@ -68,18 +68,21 @@ func _on_projectile_hit():
 	spawn_target()
 	
 	shot_active = false
+	$Player.can_charge = true
 	
 func _on_projectile_miss():
 	print("miss")
 	combo = 1.0
 	
 	shot_active = false
+	$Player.can_charge = true
 	
 func _on_projectile_out_of_view():
 	print("miss")
 	combo = 1.0
 	
 	shot_active = false
+	$Player.can_charge = true
 
 func _on_player_shot_request(direction: Vector2, power: float):
 	if shot_active:

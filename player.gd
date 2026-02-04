@@ -4,6 +4,7 @@ extends Node2D
 
 signal shot_request(locked_direction, powering_value)
 
+var can_charge := true
 var aim_value = 0.0
 var aim_direction = 1.0
 var aim_speed = 0.75
@@ -24,6 +25,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+		
+		if not can_charge:
+			aim_locked = false
+			power_value = 0.0
+			fill_mat.set_shader_parameter("power", 0.0)
+			return
+		
 		if Input.is_action_just_pressed("shoot") and not aim_locked:
 			aim_locked = true
 			aim_locked_value = aim_value
@@ -54,6 +62,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_released("shoot") and aim_locked:
 			powering_value = power_value
 			emit_signal("shot_request", locked_direction, powering_value)
+			can_charge = false
 			aim_locked = false
 			power_value = 0.0
 			print("Power locked: ", powering_value)
@@ -68,7 +77,6 @@ func _process(delta: float) -> void:
 			show_direction = locked_direction
 		$AimArrow.rotation = show_direction.angle()
 		
-		#$PowerBarBG/PowerBar.size.x = 60 * power_value
 		fill_mat.set_shader_parameter("power", power_value if aim_locked else 0.0)
 
 func angle_calculat():

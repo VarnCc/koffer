@@ -101,5 +101,3 @@ position = Vector2(80, 256)
 texture = ExtResource("1_ig7tw")
 
 [node name="GameTimer" type="Timer" parent="." unique_id=889713443]
-
-[node name="Player" parent="." unique_id=343612898 instance=ExtResource("5_lquwl")]

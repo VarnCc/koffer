@@ -4,6 +4,7 @@ var finished := false
 signal hit
 signal miss
 signal out_of_view
+signal finish_realse
 
 func final():
 	if finished:
@@ -17,6 +18,7 @@ func _physics_process(delta: float) -> void:
 	if position.x < 0 or position.x > screen_size.x +20:
 		print("Outof view")
 		final()
+		emit_signal("finish_realse")
 		emit_signal("out_of_view")
 		queue_free()
 
@@ -33,10 +35,12 @@ func _on_body_entered(body: Node) -> void:
 		final()
 		print("Miss (hit body): ", body.name)
 		emit_signal("miss")
+		emit_signal("finish_realse")
 		queue_free()
 		
 	if body.is_in_group("Target"):
 		final()
 		print("hit")
+		emit_signal("finish_realse")
 		emit_signal("hit")
 		queue_free()
